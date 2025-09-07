@@ -17,10 +17,11 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'FaizNation',
         theme: ThemeData(
+          fontFamily: 'Poppins',
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 47, 0, 255)),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF172554)),
         ),
         initialRoute: '/login',
         routes: {
