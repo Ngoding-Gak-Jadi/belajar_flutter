@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'FaizNation',
         theme: ThemeData(
-          fontFamily: 'Poppins',
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF172554)),
         ),
