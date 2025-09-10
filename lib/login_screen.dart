@@ -1,3 +1,4 @@
+import 'package:belajar_flutter/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
@@ -10,6 +11,19 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  void login() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MyHomePage(
+          userEmail: emailController.text,
+          userPass: passController.text,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF172554),
-                    ),
+                  ),
                   textAlign: TextAlign.left,
                 ),
                 const Text(
@@ -39,11 +53,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                     color: Color(0xFF60A5FA),
-                    ),
+                  ),
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 50),
-                const TextField(
+                TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
                     labelText: 'Email',
@@ -54,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
                 TextField(
+                  controller: passController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
@@ -84,9 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/home");
-                  },
+                  onPressed: login,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     backgroundColor: const Color(0xFF2563EB),
