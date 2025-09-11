@@ -18,13 +18,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1a94ff)),
+        fontFamily: 'Poppins',
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/signin': (context) => const SigninScreen(),
-        '/home': (context) => MyHomePage(userEmail: '', userPass: ''),
+        '/home': (context) => MyHomePage(userEmail: 'Guest', userPass: '-'),
       },
     );
   }

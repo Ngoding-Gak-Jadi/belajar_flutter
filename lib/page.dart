@@ -16,8 +16,8 @@ class MyHomePage extends StatelessWidget {
     "Death Note",
     "My Hero Academia",
   ];
-  
-  String greetingMessage() {
+
+  Map<String, String> greetingMessage() {
     DateTime now = DateTime.now();
     int hour = now.hour;
     String formattedTime =
@@ -35,13 +35,14 @@ class MyHomePage extends StatelessWidget {
       greeting = "Selamat Malam 🌙";
     }
 
-    return "$greeting, sekarang jam $formattedTime";
+    return {"greeting": greeting, "time": formattedTime};
   }
 
   MyHomePage({super.key, required this.userEmail, required this.userPass});
 
   @override
   Widget build(BuildContext context) {
+    final message = greetingMessage();
     return Scaffold(
       appBar: AppBar(title: const Text("Home")),
       body: Column(
@@ -55,13 +56,15 @@ class MyHomePage extends StatelessWidget {
               children: [
                 const Text(
                   "Welcome!",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
                 Text("Email: $userEmail"),
                 Text("Password: $userPass"),
-                Text(greetingMessage()),
-                
+                Text(message["greeting"]!),
+                const SizedBox(height: 10),
+                Text("Sekarang jam ${message["time"]}"),
+                const SizedBox(height: 20),
               ],
             ),
           ),

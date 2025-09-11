@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 const SizedBox(height: 30),
                 const Text(
                   'WELCOME!',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontFamily: 'Anja'),
                   textAlign: TextAlign.center,
                 ),
               ],
