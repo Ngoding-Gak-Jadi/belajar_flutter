@@ -14,15 +14,37 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
+  String? emailError;
+  String? passError;
+
   void login() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => MyHomePage(
-          userEmail: emailController.text,
-          userPass: passController.text,
+    setState(() {
+      emailError = null;
+      passError = null;
+    });
+
+    String email = emailController.text.trim();
+    String pass = passController.text.trim();
+
+    if (email.isEmpty) {
+      setState(() {
+        emailError = "Email wajib diisi";
+      });
+    }
+
+    if (pass.isEmpty) {
+      setState(() {
+        passError = "Password wajib diisi";
+      });
+    }
+
+    if (email.isNotEmpty && pass.isNotEmpty) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(userEmail: email, userPass: pass),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override
@@ -36,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/Logo-wibu.png', height: 120),
+                Image.asset('assets/images/logoMango.png', height: 120),
                 const SizedBox(height: 35),
                 const Text(
                   'WELCOME!',
@@ -62,6 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
                     labelText: 'Email',
+                    errorText: emailError,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
@@ -74,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
                     labelText: 'Password',
+                    errorText: passError,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),

@@ -61,8 +61,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/Logo-wibu.png
-    - assets/images/cat_sneaking.gif
+    - assets/images/logoMango.png
+    - assets/images/iconSplash.gif
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

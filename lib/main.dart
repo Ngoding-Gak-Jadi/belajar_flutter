@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'FaizNation',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 243, 21, 21)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1a94ff)),
       ),
       initialRoute: '/',
       routes: {

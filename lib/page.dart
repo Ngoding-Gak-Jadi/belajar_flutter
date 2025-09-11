@@ -16,6 +16,27 @@ class MyHomePage extends StatelessWidget {
     "Death Note",
     "My Hero Academia",
   ];
+  
+  String greetingMessage() {
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    String formattedTime =
+        "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+
+    String greeting;
+
+    if (hour >= 5 && hour < 12) {
+      greeting = "Selamat Pagi 🌅";
+    } else if (hour >= 12 && hour < 15) {
+      greeting = "Selamat Siang ☀️";
+    } else if (hour >= 15 && hour < 18) {
+      greeting = "Selamat Sore 🌇";
+    } else {
+      greeting = "Selamat Malam 🌙";
+    }
+
+    return "$greeting, sekarang jam $formattedTime";
+  }
 
   MyHomePage({super.key, required this.userEmail, required this.userPass});
 
@@ -39,6 +60,8 @@ class MyHomePage extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text("Email: $userEmail"),
                 Text("Password: $userPass"),
+                Text(greetingMessage()),
+                
               ],
             ),
           ),
