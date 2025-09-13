@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Image.asset('assets/images/logoMango.png', height: 120),
                 const SizedBox(height: 35),
                 const Text(
-                  'WELCOME!',
+                  'Ohayō👋!',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.left,
                 ),
                 const Text(
-                  'Silahkan login dulu bg',
+                  'siap melanjutkan petualanganmu?',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,

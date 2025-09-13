@@ -1,6 +1,6 @@
+import 'package:belajar_flutter/page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -11,6 +11,41 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool _obscurePassword = true;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  String? emailError;
+  String? passError;
+
+  void login() {
+    setState(() {
+      emailError = null;
+      passError = null;
+    });
+
+    String email = emailController.text.trim();
+    String pass = passController.text.trim();
+
+    if (email.isEmpty) {
+      setState(() {
+        emailError = "Email wajib diisi";
+      });
+    }
+
+    if (pass.isEmpty) {
+      setState(() {
+        passError = "Password wajib diisi";
+      });
+    }
+
+    if (email.isNotEmpty && pass.isNotEmpty) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(userEmail: email, userPass: pass),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'OHAYOU!',
+                  'Hajimemashite😺!',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -34,19 +69,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textAlign: TextAlign.left,
                 ),
                 const Text(
-                  'napa bg kok ke sini?',
+                  'Ayo mulai perjalanan barumu',
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w400,
                     color: Color(0xFF60A5FA),
                   ),
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 50),
-                const TextField(
+                TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
                     labelText: 'Email',
+                    errorText: emailError,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
@@ -54,10 +91,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
                 TextField(
+                  controller: passController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
                     labelText: 'Password',
+                    errorText: passError,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
@@ -81,6 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
                     labelText: 'Confrim password',
+                    errorText: passError,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
@@ -100,9 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/home");
-                  },
+                  onPressed: login,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     backgroundColor: const Color(0xFF2563EB),
