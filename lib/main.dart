@@ -1,6 +1,6 @@
 import 'package:belajar_flutter/login_screen.dart';
 import 'package:belajar_flutter/page.dart';
-import 'package:belajar_flutter/signin_screen.dart';
+import 'package:belajar_flutter/signUp_screen.dart';
 import 'package:belajar_flutter/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
-        '/signin': (context) => const SigninScreen(),
+        '/signin': (context) => const SignUpScreen(),
         '/home': (context) => MyHomePage(userEmail: 'Guest', userPass: '-'),
       },
     );

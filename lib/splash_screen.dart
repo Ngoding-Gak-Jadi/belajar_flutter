@@ -1,4 +1,4 @@
-import 'package:belajar_flutter/login_screen.dart';
+import 'package:belajar_flutter/getstarted_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement<void, void>(
         context,
         MaterialPageRoute<void>(
-          builder: (BuildContext context) => const LoginScreen(),
+          builder: (BuildContext context) => const GetStartedPage(),
         ),
       );
     });

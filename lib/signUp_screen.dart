@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _obscurePassword = true;
 
   @override

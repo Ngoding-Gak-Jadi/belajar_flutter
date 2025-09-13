@@ -63,6 +63,8 @@ flutter:
   assets:
     - assets/images/logoMango.png
     - assets/images/iconSplash.gif
+    - assets/images/anime1.png
+    - assets/images/icon.png
 
   fonts:
     - family: Anja
