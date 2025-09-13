@@ -21,19 +21,19 @@ class MyHomePage extends StatelessWidget {
 
   final sampleComics = [
     Comic(
-      title: 'Neo City Chronicles',
-      subtitle: 'Chapter 120 • Updated',
+      title: 'One piece',
+      subtitle: 'Chapter 1107 • Updated',
       imageUrl: 'assets/images/newcomic/onePiece.png',
     ),
     Comic(
-      title: 'Slice of Life: Kota Kecil',
-      subtitle: 'New Arc',
-      imageUrl: 'https://via.placeholder.com/800x450.png?text=Slice+of+Life',
+      title: 'Boku no Hero',
+      subtitle: 'chapter 430 • Completed',
+      imageUrl: 'assets/images/newcomic/bokuNoHero.png',
     ),
     Comic(
-      title: 'Mecha Reborn',
-      subtitle: 'S2 Premiere',
-      imageUrl: 'https://via.placeholder.com/800x450.png?text=Mecha+Reborn',
+      title: 'Jujutsu Kaisen',
+      subtitle: 'chapter 271 • Completed',
+      imageUrl: 'assets/images/newcomic/jujusuKaisen.png',
     ),
   ];
 
@@ -107,12 +107,12 @@ class MyHomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ComicCarousel(comics: sampleComics),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/');
-              },
-              child: const Text('Logout'),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushReplacementNamed(context, '/');
+            //   },
+            //   child: const Text('Logout'),
+            // ),
 
             const Padding(
               padding: EdgeInsets.all(16.0),
@@ -142,14 +142,14 @@ class MyHomePage extends StatelessWidget {
                         vertical: 8,
                       ),
                       elevation: 4,
-                      color: Colors.deepPurple[50],
+                      color: const Color(0xFFE5F3FF),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Row(
                           children: [
                             const Icon(
                               Icons.auto_stories,
-                              color: Color.fromARGB(255, 1, 255, 86),
+                              color: Color(0xFF005FB3),
                               size: 28,
                             ),
                             const SizedBox(width: 16),
@@ -165,7 +165,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                             const Icon(
                               Icons.arrow_forward_ios,
-                              color: Colors.deepPurple,
+                              color: Color(0xFF005FB3),
                               size: 18,
                             ),
                           ],

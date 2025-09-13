@@ -56,7 +56,7 @@ class ComicCarousel extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                           ),
@@ -68,7 +68,7 @@ class ComicCarousel extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               // ignore: deprecated_member_use
-                              color: Colors.black.withOpacity(0.9),
+                              color: Colors.white.withOpacity(0.9),
                               fontSize: 13,
                             ),
                           ),

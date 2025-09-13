@@ -66,6 +66,8 @@ flutter:
     - assets/images/anime1.png
     - assets/images/icon.png
     - assets/images/newcomic/onePiece.png
+    - assets/images/newcomic/bokuNoHero.png
+    - assets/images/newcomic/jujusuKaisen.png
 
   fonts:
     - family: Anja

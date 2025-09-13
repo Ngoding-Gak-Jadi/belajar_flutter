@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   'siap melanjutkan petualanganmu?',
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w600,
                     color: Color(0xFF60A5FA),
                   ),
                   textAlign: TextAlign.left,

@@ -72,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   'Ayo mulai perjalanan barumu',
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                     color: Color(0xFF60A5FA),
                   ),
                   textAlign: TextAlign.left,
