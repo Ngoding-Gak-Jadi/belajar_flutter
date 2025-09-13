@@ -1,3 +1,4 @@
+import 'package:belajar_flutter/content/detailPage.dart';
 import 'package:belajar_flutter/login_screen.dart';
 import 'package:belajar_flutter/page.dart';
 import 'package:belajar_flutter/signUp_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/signin': (context) => const SignUpScreen(),
         '/home': (context) => MyHomePage(userEmail: 'Guest', userPass: '-'),
+        '/animeDetail': (context) => const AnimeDetailPage(title: "Default"),
       },
     );
   }
