@@ -54,28 +54,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset('assets/images/logoMango.png', height: 120),
+                const SizedBox(height: 35),
                 const Text(
                   'Hajimemashite😺!',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF172554),
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                 ),
                 const Text(
-                  'Ayo mulai perjalanan barumu',
+                  'Ayo mulai perjalanan barumu di mango!',
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF60A5FA),
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 50),
                 TextField(

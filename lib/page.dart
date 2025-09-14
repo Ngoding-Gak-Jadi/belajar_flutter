@@ -1,5 +1,5 @@
-import 'package:belajar_flutter/content/detailPage.dart';
-import 'package:belajar_flutter/content/newComic.dart';
+import 'package:belajar_flutter/content/detail_page.dart';
+import 'package:belajar_flutter/content/new_comic.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
