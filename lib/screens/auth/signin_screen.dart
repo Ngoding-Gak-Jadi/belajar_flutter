@@ -1,6 +1,8 @@
-import 'package:belajar_flutter/page.dart';
-import 'package:belajar_flutter/utils/dialog_utils.dart';
+import 'package:belajar_flutter/screens/home/home_screen.dart';
+import 'package:belajar_flutter/screens/main_navigation_screen.dart';
+import 'package:belajar_flutter/utils/showexit.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -166,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              MyHomePage(userEmail: email, userPass: pass),
+                              MainNavigationScreen(),
                         ),
                       );
                     },

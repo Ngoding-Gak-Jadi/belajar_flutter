@@ -1,6 +1,7 @@
-import 'package:belajar_flutter/getstarted_page.dart';
+import 'package:belajar_flutter/screens/getstarted_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -38,7 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 const SizedBox(height: 30),
                 const Text(
                   'WELCOME!',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontFamily: 'Anja'),
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Anja',
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ],

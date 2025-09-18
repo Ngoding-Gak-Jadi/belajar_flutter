@@ -1,8 +1,15 @@
-import 'package:belajar_flutter/content/new_comic.dart';
 import 'package:flutter/material.dart';
 
+class NewComic {
+  final String title;
+  final String imageUrl;
+  final String subtitle;
+
+  NewComic({required this.title, required this.imageUrl, this.subtitle = ''});
+}
+
 class ComicCarousel extends StatelessWidget {
-  final List<Comicnew> comics;
+  final List<NewComic> comics;
 
   const ComicCarousel({super.key, required this.comics});
 
@@ -40,7 +47,33 @@ class ComicCarousel extends StatelessWidget {
                     left: 12,
                     bottom: 12,
                     right: 12,
-                    child: c.buildInfo(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          c.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        if (c.subtitle.isNotEmpty)
+                          Text(
+                            c.subtitle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              // ignore: deprecated_member_use
+                              color: Colors.white.withOpacity(0.9),
+                              fontSize: 13,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ],
               ),

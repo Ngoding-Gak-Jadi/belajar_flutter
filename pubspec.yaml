@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_signin_button: ^2.0.0
   flutter_native_splash: ^2.4.6
+  salomon_bottom_bar: ^3.3.2
 
 
 dev_dependencies:
