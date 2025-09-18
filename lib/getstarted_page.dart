@@ -49,7 +49,7 @@ class GetStartedPage extends StatelessWidget {
                           fontSize: 60,
                           fontWeight: FontWeight.w900,
                           color: Colors.black,
-                        ),
+                        ),  
                       ),
                       Text(
                         "the Story",

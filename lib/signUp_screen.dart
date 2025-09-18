@@ -1,6 +1,6 @@
 import 'package:belajar_flutter/page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+// import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -50,7 +50,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -71,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const Text(
-                  'Ayo mulai perjalanan barumu di mango!',
+                  "Let's start your new journey at Mango!",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
@@ -151,70 +153,70 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   child: const Text(
-                    "Daptar",
-                    style: TextStyle(color: Colors.white),
+                    "Create Account",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
-                const SizedBox(height: 20),
-                Row(
-                  children: const [
-                    Expanded(child: Divider()),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text("Atau daftar dengan"),
-                    ),
-                    Expanded(child: Divider()),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: SignInButton(
-                    Buttons.Google,
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 250),
+                // Row(
+                //   children: const [
+                //     Expanded(child: Divider()),
+                //     Padding(
+                //       padding: EdgeInsets.symmetric(horizontal: 10),
+                //       child: Text("Atau daftar dengan"),
+                //     ),
+                //     Expanded(child: Divider()),
+                //   ],
+                // ),
+                // const SizedBox(height: 20),
+                // SizedBox(
+                //   width: 200,
+                //   height: 50,
+                //   child: SignInButton(
+                //     Buttons.Google,
+                //     onPressed: () {},
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(height: 16),
 
-                SizedBox(
-                  width: 220,
-                  height: 50,
-                  child: SignInButton(
-                    Buttons.Facebook,
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
+                // SizedBox(
+                //   width: 220,
+                //   height: 50,
+                //   child: SignInButton(
+                //     Buttons.Facebook,
+                //     onPressed: () {},
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(height: 16),
 
-                SizedBox(
-                  width: 220,
-                  height: 50,
-                  child: SignInButton(
-                    Buttons.GitHub,
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   width: 220,
+                //   height: 50,
+                //   child: SignInButton(
+                //     Buttons.GitHub,
+                //     onPressed: () {},
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Udah punya akun? "),
+                    const Text("Already have an account? "),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, '/login');
                       },
                       child: const Text(
-                        "Login",
+                        " Sign in",
                         style: TextStyle(color: Colors.blue),
                       ),
                     ),

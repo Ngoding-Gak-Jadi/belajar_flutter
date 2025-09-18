@@ -1,7 +1,7 @@
 import 'package:belajar_flutter/page.dart';
 import 'package:belajar_flutter/utils/dialog_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+// import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false, // cegah langsung back tanpa dialog
+      canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
 
@@ -64,7 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Favorite Anime"),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async {
@@ -95,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                   ),
                   const Text(
-                    'Siap melanjutkan petualanganmu?',
+                    'Ready to continue your adventure?',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
@@ -144,12 +143,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: const Text("Lupa sandi?"),
+                      child: const Text("forgot password?"),
                     ),
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: login,
+                    onPressed: () {
+                      String email = emailController.text.trim();
+                      String pass = passController.text.trim();
+
+                      if (email.isEmpty || pass.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Email dan Password wajib diisi"),
+                          ),
+                        );
+                        return;
+                      }
+
+                      // kalau berhasil login → langsung ke HomePage
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              MyHomePage(userEmail: email, userPass: pass),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: const Color(0xFF007BFF),
@@ -158,64 +178,64 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     child: const Text(
-                      "Log In",
-                      style: TextStyle(color: Colors.white),
+                      "Login",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: const [
-                      Expanded(child: Divider()),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text("Atau daftar dengan"),
-                      ),
-                      Expanded(child: Divider()),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: 200,
-                    height: 50,
-                    child: SignInButton(
-                      Buttons.Google,
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 300),
+                  // Row(
+                  //   children: const [
+                  //     Expanded(child: Divider()),
+                  //     Padding(
+                  //       padding: EdgeInsets.symmetric(horizontal: 10),
+                  //       child: Text("Atau daftar dengan"),
+                  //     ),
+                  //     Expanded(child: Divider()),
+                  //   ],
+                  // ),
+                  // const SizedBox(height: 20),
+                  // SizedBox(
+                  //   width: 200,
+                  //   height: 50,
+                  //   child: SignInButton(
+                  //     Buttons.Google,
+                  //     onPressed: () {},
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(12),
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 16),
 
-                  SizedBox(
-                    width: 220,
-                    height: 50,
-                    child: SignInButton(
-                      Buttons.Facebook,
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  // SizedBox(
+                  //   width: 220,
+                  //   height: 50,
+                  //   child: SignInButton(
+                  //     Buttons.Facebook,
+                  //     onPressed: () {},
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(12),
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 16),
 
-                  SizedBox(
-                    width: 220,
-                    height: 50,
-                    child: SignInButton(
-                      Buttons.GitHub,
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
+                  // SizedBox(
+                  //   width: 220,
+                  //   height: 50,
+                  //   child: SignInButton(
+                  //     Buttons.GitHub,
+                  //     onPressed: () {},
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(12),
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Ngga punya akun? "),
+                      const Text("Haven’t any account? "),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/signin');

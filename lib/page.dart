@@ -1,3 +1,5 @@
+import 'package:belajar_flutter/content/anime_comic.dart';
+import 'package:belajar_flutter/content/comic_carausel.dart';
 import 'package:belajar_flutter/content/detail_page.dart';
 import 'package:belajar_flutter/content/new_comic.dart';
 import 'package:flutter/material.dart';
@@ -20,19 +22,21 @@ class MyHomePage extends StatelessWidget {
   ];
 
   final sampleComics = [
-    Comic(
-      title: 'One piece',
+    Comicnew(
+      title: 'One Piece',
       subtitle: 'Chapter 1107 • Updated',
       imageUrl: 'assets/images/newcomic/onePiece.png',
     ),
-    Comic(
-      title: 'Boku no Hero',
-      subtitle: 'chapter 430 • Completed',
+    AnimeComic(
+      title: 'Boku no Hero Academia',
+      subtitle: 'Chapter 500 • Completed',
       imageUrl: 'assets/images/newcomic/bokuNoHero.png',
+      author: 'Masashi Kishimoto',
+      chapter: '500',
     ),
-    Comic(
+    Comicnew(
       title: 'Jujutsu Kaisen',
-      subtitle: 'chapter 271 • Completed',
+      subtitle: 'Chapter 271 • Completed',
       imageUrl: 'assets/images/newcomic/jujusuKaisen.png',
     ),
   ];
@@ -107,13 +111,13 @@ class MyHomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ComicCarousel(comics: sampleComics),
+
             // ElevatedButton(
             //   onPressed: () {
             //     Navigator.pushReplacementNamed(context, '/');
             //   },
             //   child: const Text('Logout'),
             // ),
-
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
