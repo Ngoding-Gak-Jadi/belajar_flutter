@@ -1,10 +1,12 @@
-import 'package:belajar_flutter/widgets/new_comic.dart';
-import 'package:belajar_flutter/data/manga_data.dart';
-import 'package:belajar_flutter/data/manhwa_data.dart';
-import 'package:belajar_flutter/data/manhua_data.dart';
+
+import 'package:belajar_flutter/data/manga/manga_data.dart';
+import 'package:belajar_flutter/data/manhua/manhua_data.dart';
+import 'package:belajar_flutter/data/manhwa/manhwa_data.dart';
 import 'package:belajar_flutter/models/comic.dart';
 import 'package:belajar_flutter/widgets/comic_list_view.dart';
+import 'package:belajar_flutter/widgets/new_comic.dart';
 import 'package:flutter/material.dart';
+
 
 class MyHomePage extends StatelessWidget {
   final String userEmail;
@@ -116,7 +118,7 @@ class MyHomePage extends StatelessWidget {
                         tabs: [
                           Tab(icon: Icon(Icons.library_books), text: 'All'),
                           Tab(icon: Icon(Icons.menu_book), text: 'Manga'),
-                          Tab(icon: Icon(Icons.phone_android), text: 'Manhwa'),
+                          Tab(icon: Icon(Icons.chrome_reader_mode), text: 'Manhwa'),
                           Tab(icon: Icon(Icons.auto_stories), text: 'Manhua'),
                         ],
                       ),

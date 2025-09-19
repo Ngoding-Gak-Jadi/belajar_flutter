@@ -32,7 +32,6 @@ class Comic {
        _chapters = chapters,
        _releaseYear = releaseYear;
 
-  // Getters
   String get id => _id;
   String get title => _title;
   String get author => _author;
@@ -45,7 +44,6 @@ class Comic {
   int get chapters => _chapters;
   String get releaseYear => _releaseYear;
 
-  // Setters
   set rating(double newRating) {
     if (newRating >= 0 && newRating <= 5) {
       _rating = newRating;
@@ -62,7 +60,6 @@ class Comic {
     }
   }
 
-  // Method to get additional information
   Map<String, dynamic> getAdditionalInfo() {
     return {
       'Status': _status,
@@ -71,14 +68,5 @@ class Comic {
     };
   }
 
-  // Method to get comic type
   String getType() => 'Comic';
-
-  // Method to display comic information
-  void displayInfo() {
-    print('$title by $author');
-    print('Status: $status');
-    print('Chapters: $chapters');
-    print('Rating: $_rating/5.0');
-  }
 }

@@ -1,11 +1,18 @@
+import 'package:belajar_flutter/providers/favorites_provider.dart';
 import 'package:belajar_flutter/screens/auth/signin_screen.dart';
 import 'package:belajar_flutter/screens/auth/signup_screen.dart';
 import 'package:belajar_flutter/screens/splash_screen.dart';
-import 'package:belajar_flutter/screens/main_navigation_screen.dart';
+import 'package:belajar_flutter/widgets/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FavoritesProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

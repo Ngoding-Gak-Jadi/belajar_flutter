@@ -1,7 +1,9 @@
+
+
 import 'package:belajar_flutter/models/comic.dart';
 
 class Manhua extends Comic {
-  bool _isColored = true; // khas manhua
+  final bool _isColored = true;
 
   Manhua({
     required super.id,
@@ -11,13 +13,22 @@ class Manhua extends Comic {
     required super.coverImage,
     required super.rating,
     required super.genres,
+    super.status,
+    super.chapters,
+    super.releaseYear,
   });
 
   bool get isColored => _isColored;
 
   @override
-  void displayInfo() {
-    super.displayInfo();
-    print("📍 Origin: China, Colored: $_isColored");
+  Map<String, dynamic> getAdditionalInfo() {
+    return {
+      ...super.getAdditionalInfo(),
+      'Origin': 'China 🇨🇳',
+      'isColored': true,
+    };
   }
+
+  @override
+  String getType() => 'Manhua';
 }

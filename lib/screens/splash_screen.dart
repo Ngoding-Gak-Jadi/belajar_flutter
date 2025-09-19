@@ -1,6 +1,9 @@
+
 import 'package:belajar_flutter/screens/getstarted_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
+
 
 
 class SplashScreen extends StatefulWidget {
