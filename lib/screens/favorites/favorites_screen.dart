@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Favorites'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('My Favorites'),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+      ),
       body: Consumer<FavoritesProvider>(
         builder: (context, favoritesProvider, child) {
           if (favoritesProvider.favorites.isEmpty) {

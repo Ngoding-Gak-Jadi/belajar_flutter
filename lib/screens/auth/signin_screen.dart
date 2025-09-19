@@ -1,8 +1,6 @@
-import 'package:belajar_flutter/screens/home/home_screen.dart';
 import 'package:belajar_flutter/utils/showexit.dart';
 import 'package:belajar_flutter/widgets/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -43,7 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
     if (email.isNotEmpty && pass.isNotEmpty) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => MyHomePage(userEmail: email, userPass: pass),
+          builder: (context) => MainNavigationScreen(
+            userEmail: emailController.text.trim(),
+            userPass: passController.text.trim(),
+          ),
         ),
       );
     }
@@ -70,7 +71,6 @@ class _LoginScreenState extends State<LoginScreen> {
             onPressed: () async {
               final confirm = await showExitConfirmationDialog(context);
               if (!mounted) return;
-
               // ignore: use_build_context_synchronously
               if (confirm) Navigator.of(context).pop();
             },
@@ -150,35 +150,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {
-                      String email = emailController.text.trim();
-                      String pass = passController.text.trim();
-
-                      if (email.isEmpty || pass.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Email dan Password wajib diisi"),
-                          ),
-                        );
-                        return;
-                      }
-
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MainNavigationScreen(),
-                        ),
-                      );
-                    },
+                    onPressed: login,
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: const Color(0xFF007BFF),
+                      backgroundColor: const Color(0xFF2563EB),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     child: const Text(
-                      "Login",
+                      "LogIn",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),

@@ -6,7 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class MainNavigationScreen extends StatefulWidget {
-  const MainNavigationScreen({super.key});
+  final String userEmail;
+  final String userPass;
+  const MainNavigationScreen({
+    super.key,
+    required this.userEmail,
+    required this.userPass,
+  });
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
@@ -15,11 +21,17 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
 
-  final _screens = [
-    MyHomePage(userEmail: 'Guest', userPass: '-'),
-    const FavoritesScreen(),
-    const ProfileScreen(),
-  ];
+  late List<Widget> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      MyHomePage(userEmail: widget.userEmail, userPass: widget.userPass),
+      const FavoritesScreen(),
+      ProfileScreen(userEmail: widget.userEmail, userPass: widget.userPass),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
