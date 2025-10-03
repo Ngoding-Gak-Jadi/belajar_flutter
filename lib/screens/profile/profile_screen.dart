@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String userEmail;
@@ -29,6 +30,13 @@ class ProfileScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _launchGitHub() async {
+    final Uri url = Uri.parse("https://github.com/FaizNation");
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Tidak bisa membuka $url');
+    }
   }
 
   @override
@@ -104,6 +112,18 @@ class ProfileScreen extends StatelessWidget {
                   textStyle: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: _launchGitHub,
+                child: Text(
+                  "Developed by Faiz Nation",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[700],
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ),

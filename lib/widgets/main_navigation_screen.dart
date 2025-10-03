@@ -44,17 +44,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
             title: const Text('Home'),
-            selectedColor: Theme.of(context).primaryColor,
+            // selectedColor: Theme.of(context).primaryColor,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.favorite),
             title: const Text('Favorites'),
-            selectedColor: Colors.pink,
+            // selectedColor: Colors.pink,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.person),
             title: const Text('Profile'),
-            selectedColor: Colors.teal,
+            // selectedColor: Colors.teal,
           ),
         ],
       ),

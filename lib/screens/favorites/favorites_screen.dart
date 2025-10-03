@@ -10,10 +10,12 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE6F2FF),
       appBar: AppBar(
         title: const Text('My Favorites'),
         centerTitle: true,
         automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFFE6F2FF),
       ),
       body: Consumer<FavoritesProvider>(
         builder: (context, favoritesProvider, child) {
