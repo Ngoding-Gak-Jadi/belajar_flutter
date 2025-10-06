@@ -9,13 +9,12 @@ import 'package:belajar_flutter/widgets/new_comic.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  final String userEmail;
-  final String userPass;
+  final String userName;
 
   const MyHomePage({
     super.key,
-    required this.userEmail,
-    required this.userPass,
+    required this.userName,
+
   });
 
   @override
@@ -114,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        widget.userEmail,
+                        widget.userName,
                         style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w800,

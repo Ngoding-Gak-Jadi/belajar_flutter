@@ -1,5 +1,7 @@
 import 'package:belajar_flutter/utils/showexit.dart';
 import 'package:belajar_flutter/widgets/main_navigation_screen.dart';
+import 'package:belajar_flutter/services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,36 +19,70 @@ class _LoginScreenState extends State<LoginScreen> {
   String? emailError;
   String? passError;
 
-  void login() {
+  Future<void> login() async {
     setState(() {
       emailError = null;
       passError = null;
     });
 
-    String email = emailController.text.trim();
-    String pass = passController.text.trim();
+    final email = emailController.text.trim();
+    final pass = passController.text.trim();
 
     if (email.isEmpty) {
-      setState(() {
-        emailError = "Email wajib diisi";
-      });
+      setState(() => emailError = 'Email wajib diisi');
     }
-
     if (pass.isEmpty) {
-      setState(() {
-        passError = "Password wajib diisi";
-      });
+      setState(() => passError = 'Password wajib diisi');
     }
+    if (email.isEmpty || pass.isEmpty) return;
 
-    if (email.isNotEmpty && pass.isNotEmpty) {
-      Navigator.of(context).push(
+    final auth = AuthService();
+    try {
+      final cred = await auth.signInWithEmail(email, pass);
+      final user = cred.user;
+
+      String userName = '';
+      if (user != null) {
+        userName = user.displayName ?? '';
+        if (userName.isEmpty) {
+          // try read from Firestore users collection
+          try {
+            final doc = await FirebaseFirestore.instance
+                .collection('users')
+                .doc(user.uid)
+                .get();
+            if (doc.exists) {
+              final data = doc.data();
+              if (data != null && data['displayName'] != null) {
+                userName = data['displayName'] as String;
+              }
+            }
+          } catch (fireErr) {
+            // ignore firestore read error — we'll fallback to email
+          }
+        }
+      }
+
+      if (userName.isEmpty) userName = email; // fallback to email if no name
+
+      if (!mounted) return;
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => MainNavigationScreen(
-            userEmail: emailController.text.trim(),
-            userPass: passController.text.trim(),
+            userName: userName,
+            userEmail: email,
+            userPass: pass,
           ),
         ),
       );
+    } catch (err) {
+      final message = err is Exception
+          ? err.toString().replaceAll('Exception: ', '')
+          : 'Login failed';
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
     }
   }
 
