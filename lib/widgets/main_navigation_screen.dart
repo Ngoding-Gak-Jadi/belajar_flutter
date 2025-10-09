@@ -1,4 +1,5 @@
 import 'package:belajar_flutter/screens/favorites/favorites_screen.dart';
+import 'package:belajar_flutter/screens/history/history_screen.dart';
 import 'package:belajar_flutter/screens/home/home_screen.dart';
 import 'package:belajar_flutter/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     _screens = [
       MyHomePage(userName: widget.userName),
       const FavoritesScreen(),
+      const HistoryScreen(),
       ProfileScreen(userEmail: widget.userEmail, userPass: widget.userPass),
     ];
   }
@@ -51,6 +53,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             icon: const Icon(Icons.favorite),
             title: const Text('Favorites'),
             // selectedColor: Colors.pink,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.history),
+            title: const Text('History'),
+            // selectedColor: Theme.of(context).primaryColor,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.person),
