@@ -1,7 +1,7 @@
 
-import 'package:belajar_flutter/models/manhua_comic.dart';
+import 'package:belajar_flutter/models/comic/manhua_comic.dart';
 
-import '../../models/comic.dart';
+import '../../models/comic/comic.dart';
 
 List<Comic> manhuaList = [
   Manhua(

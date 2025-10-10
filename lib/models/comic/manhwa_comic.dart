@@ -1,9 +1,11 @@
-import 'package:belajar_flutter/models/comic.dart';
 
-class Manga extends Comic {
-  final String _readingDirection = "Right-to-Left";
 
-  Manga({
+import 'package:belajar_flutter/models/comic/comic.dart';
+
+class Manhwa extends Comic {
+  final String _readingDirection = "Top-to-Bottom";
+
+  Manhwa({
     required super.id,
     required super.title,
     required super.author,
@@ -22,11 +24,11 @@ class Manga extends Comic {
   Map<String, dynamic> getAdditionalInfo() {
     return {
       ...super.getAdditionalInfo(),
-      'Origin': 'Japan 🇯🇵',
+      'Origin': 'Korea 🇰🇷',
       'Reading Direction': _readingDirection,
     };
   }
 
   @override
-  String getType() => 'Manga';
+  String getType() => 'Manhwa';
 }

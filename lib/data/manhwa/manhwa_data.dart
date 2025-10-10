@@ -1,5 +1,5 @@
-import 'package:belajar_flutter/models/manhwa_comic.dart';
-import '../../models/comic.dart';
+import 'package:belajar_flutter/models/comic/manhwa_comic.dart';
+import '../../models/comic/comic.dart';
 
 List<Comic> manhwaList = [
   Manhwa(

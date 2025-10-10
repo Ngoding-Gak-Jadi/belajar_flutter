@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:belajar_flutter/models/history_entry.dart';
 import 'package:belajar_flutter/widgets/comic_detail_screen.dart';
 import 'package:belajar_flutter/widgets/new_comic.dart' show findComicById;
-import 'package:belajar_flutter/models/comic.dart';
+import 'package:belajar_flutter/models/comic/comic.dart';
 
 class HistoryListView extends StatelessWidget {
   final List<HistoryEntry> entries;

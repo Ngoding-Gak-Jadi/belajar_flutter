@@ -1,6 +1,6 @@
 
 
-import 'package:belajar_flutter/models/comic.dart';
+import 'package:belajar_flutter/models/comic/comic.dart';
 
 class Manhua extends Comic {
   final bool _isColored = true;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:belajar_flutter/data/manga/manga_data.dart';
-import 'package:belajar_flutter/models/comic.dart';
+import 'package:belajar_flutter/models/comic/comic.dart';
 import 'package:belajar_flutter/widgets/comic_detail_screen.dart';
 
 Comic? findComicById(String id, BuildContext context) {

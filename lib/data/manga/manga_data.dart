@@ -1,7 +1,7 @@
 
 
-import 'package:belajar_flutter/models/comic.dart';
-import 'package:belajar_flutter/models/manga_comic.dart';
+import 'package:belajar_flutter/models/comic/comic.dart';
+import 'package:belajar_flutter/models/comic/manga_comic.dart';
 
 List<Comic> mangaList = [
   Manga(
