@@ -67,7 +67,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     try {
       final result = await showPhotoEditor(context);
       if (result != null) {
-        if (mounted) setState(() => _photoUrl = result);
+        // On web the storage download URL may be identical and the browser caches the
+        // image. Add a cache-busting query param for immediate UI update.
+        String display = result;
+        if (!display.startsWith('data:') &&
+            (display.startsWith('http') || display.startsWith('https'))) {
+          final sep = display.contains('?') ? '&' : '?';
+          display = '$display${sep}cb=${DateTime.now().millisecondsSinceEpoch}';
+        }
+        if (mounted) setState(() => _photoUrl = display);
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Profile photo updated')),

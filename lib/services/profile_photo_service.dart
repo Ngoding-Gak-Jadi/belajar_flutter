@@ -73,6 +73,10 @@ class ProfilePhotoService {
     } else {
       // Network URL: update both Auth profile and Firestore
       await user.updatePhotoURL(url);
+      // Refresh the user so FirebaseAuth.instance.currentUser reflects the new photoURL
+      try {
+        await user.reload();
+      } catch (_) {}
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
         'photoUrl': url,
       }, SetOptions(merge: true));
