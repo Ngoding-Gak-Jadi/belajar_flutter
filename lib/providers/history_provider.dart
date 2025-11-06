@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import '../models/history_entry.dart';
+import '../utils/image_proxy.dart';
 
 class HistoryProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore;
@@ -40,12 +41,13 @@ class HistoryProvider extends ChangeNotifier {
   }
 
   Future<void> addEntry({
-    required String id,
+    required String comicId,
     required String title,
+    String? titleEnglish,
     String? author,
-    String? coverImage,
-    String? description,
-    Map<String, dynamic>? extra,
+    String? synopsis,
+    String? imageUrl,
+    required List<String> genres,
   }) async {
     final user = _auth.currentUser;
     if (user == null) return;
@@ -53,19 +55,23 @@ class HistoryProvider extends ChangeNotifier {
         .collection('users')
         .doc(user.uid)
         .collection('history')
-        .doc(id);
-    final Map<String, dynamic> data = {
-      'title': title,
-      if (author != null) 'author': author,
-      if (coverImage != null) 'coverImage': coverImage,
-      if (description != null) 'description': description,
-    };
-    if (extra != null) data.addAll(extra);
+        .doc(comicId);
+
+    final proxiedImageUrl =
+        imageUrl != null ? ImageProxy.proxy(imageUrl) : null;
+
     await docRef.set({
-      ...data,
+      'comicId': comicId,
+      'title': title,
+      'titleEnglish': titleEnglish,
+      'author': author,
+      'synopsis': synopsis,
+      'imageUrl': proxiedImageUrl,
+      'genres': genres,
       'openedAt': FieldValue.serverTimestamp(),
-    }, SetOptions(merge: true));
+    });
   }
+  
 
   Future<void> delete(String id) async {
     final user = _auth.currentUser;

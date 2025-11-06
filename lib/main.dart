@@ -1,15 +1,15 @@
 import 'package:belajar_flutter/providers/favorites_provider.dart';
 import 'package:belajar_flutter/providers/history_provider.dart';
-import 'package:belajar_flutter/screens/auth/signin_screen.dart';
-import 'package:belajar_flutter/screens/auth/signup_screen.dart';
-import 'package:belajar_flutter/screens/splash_screen.dart';
-import 'package:belajar_flutter/widgets/main_navigation_screen.dart';
+import 'package:belajar_flutter/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase/firebase_options.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() async {
+  usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
@@ -28,24 +28,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: goRouter,
       title: 'FaizNation',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1a94ff)),
         fontFamily: 'Poppins',
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/signin': (context) => const SignUpScreen(),
-        '/home': (context) => const MainNavigationScreen(
-          userName: '',
-          userEmail: '',
-          userPass: '',
-        ),
-      },
     );
   }
 }

@@ -1,177 +1,175 @@
-import 'dart:async';
-
-import 'package:belajar_flutter/data/manga/manga_data.dart';
-import 'package:belajar_flutter/data/manhua/manhua_data.dart';
-import 'package:belajar_flutter/data/manhwa/manhwa_data.dart';
-import 'package:belajar_flutter/models/comic/comic.dart';
-import 'package:belajar_flutter/widgets/comic_list_view.dart';
-import 'package:belajar_flutter/widgets/new_comic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../cubits/home/home_cubit.dart';
+import '../../cubits/home/home_state.dart';
+import '../../widgets/manga_widget.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   final String userName;
 
-  const MyHomePage({
-    super.key,
-    required this.userName,
-
-  });
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  late String greeting;
-  late String time;
-  late Timer timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _updateGreeting();
-    timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      _updateGreeting();
-    });
-  }
-
-  void _updateGreeting() {
-    final now = DateTime.now();
-    final hour = now.hour;
-
-    String newGreeting;
-    if (hour >= 5 && hour < 12) {
-      newGreeting = "Ohayō!";
-    } else if (hour >= 12 && hour < 15) {
-      newGreeting = "Konnichiwa!";
-    } else if (hour >= 15 && hour < 18) {
-      newGreeting = "Yūgata!";
-    } else {
-      newGreeting = "Konbanwa!";
-    }
-
-    final newTime =
-        "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
-
-    setState(() {
-      greeting = newGreeting;
-      time = newTime;
-    });
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
-  }
-
-  List<Comic> get allComics => [...mangaList, ...manhwaList, ...manhuaList];
+  const MyHomePage({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
-    final sampleComics = [
-      NewComic(
-        id: 'op001',
-        title: 'One Piece',
-        subtitle: 'Chapter 1107 • Updated',
-        imageUrl: 'assets/images/newcomic/onePiece.png',
-      ),
-      NewComic(
-        id: 'bnh001',
-        title: 'Boku no Hero',
-        subtitle: 'Chapter 430 • Completed',
-        imageUrl: 'assets/images/newcomic/bokuNoHero.png',
-      ),
-      NewComic(
-        id: 'jjk001',
-        title: 'Jujutsu Kaisen',
-        subtitle: 'Chapter 271 • Completed',
-        imageUrl: 'assets/images/newcomic/jujusuKaisen.png',
-      ),
-    ];
+    return BlocProvider(
+      create: (_) => HomeCubit(),
+      child: _MyHomePageView(userName: userName),
+    );
+  }
+}
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFE6F2FF),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+class _MyHomePageView extends StatelessWidget {
+  final String userName;
+
+  const _MyHomePageView({required this.userName});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: const Color(0xFFE6F2FF),
+          body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        greeting,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.greeting,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            userName,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 8),
                       Text(
-                        widget.userName,
+                        state.time,
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 50,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
                     ],
                   ),
-                  Text(
-                    time,
-                    style: const TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.w800,
+                ),
+                const SizedBox(height: 10),
+
+                // Search box
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search manga...',
+                      prefixIcon: const Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    onSubmitted: (query) {
+                      if (query.trim().isEmpty) return;
+                      context.push(
+                        '/search/${Uri.encodeComponent(query.trim())}',
+                      );
+                    },
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                DefaultTabController(
+                  length: 4,
+                  child: Expanded(
+                    child: Column(
+                      children: [
+                        Container(
+                          color: const Color(0xFFFFFFFF),
+                          child: TabBar(
+                            labelColor: Colors.blue,
+                            unselectedLabelColor: Colors.grey,
+                            onTap: (index) => context
+                                .read<HomeCubit>()
+                                .selectTab(HomeTab.values[index]),
+                            tabs: const [
+                              Tab(icon: Icon(Icons.library_books), text: 'All'),
+                              Tab(icon: Icon(Icons.menu_book), text: 'Manga'),
+                              Tab(
+                                icon: Icon(Icons.auto_stories),
+                                text: 'Manhwa',
+                              ),
+                              Tab(icon: Icon(Icons.book), text: 'Manhua'),
+                            ],
+                          ),
+                        ),
+                        if (state.error != null)
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Text(
+                              state.error!,
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              ComicListView(
+                                comics: state.allManga,
+                                isLoading: state.isLoading,
+                                onLoadMore: () =>
+                                    context.read<HomeCubit>().loadMoreManga(),
+                                error: state.error,
+                              ),
+                              ComicListView(
+                                comics: state.manga,
+                                isLoading: state.isLoading,
+                                onLoadMore: () =>
+                                    context.read<HomeCubit>().loadMoreManga(),
+                                error: state.error,
+                              ),
+                              ComicListView(
+                                comics: state.manhwa,
+                                isLoading: state.isLoading,
+                                onLoadMore: () =>
+                                    context.read<HomeCubit>().loadMoreManga(),
+                                error: state.error,
+                              ),
+                              ComicListView(
+                                comics: state.manhua,
+                                isLoading: state.isLoading,
+                                onLoadMore: () =>
+                                    context.read<HomeCubit>().loadMoreManga(),
+                                error: state.error,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            ComicCarousel(comics: sampleComics),
-
-            DefaultTabController(
-              length: 4,
-              child: Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      color: const Color(0xFFFFFFFF),
-                      child: TabBar(
-                        labelColor: Colors.blue,
-                        unselectedLabelColor: Colors.grey,
-                        tabs: const [
-                          Tab(icon: Icon(Icons.library_books), text: 'All'),
-                          Tab(icon: Icon(Icons.menu_book), text: 'Manga'),
-                          Tab(
-                            icon: Icon(Icons.chrome_reader_mode),
-                            text: 'Manhwa',
-                          ),
-                          Tab(icon: Icon(Icons.auto_stories), text: 'Manhua'),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        children: [
-                          ComicListView(comics: allComics),
-                          ComicListView(comics: mangaList),
-                          ComicListView(comics: manhwaList),
-                          ComicListView(comics: manhuaList),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

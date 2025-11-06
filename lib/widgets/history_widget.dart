@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:belajar_flutter/models/history_entry.dart';
-import 'package:belajar_flutter/widgets/comic_detail_screen.dart';
-import 'package:belajar_flutter/widgets/new_comic.dart' show findComicById;
-import 'package:belajar_flutter/models/comic/comic.dart';
+import '../models/history_entry.dart';
+import '../models/comic/manga.dart';
+import '../widgets/comic_detail_screen.dart';
 
 class HistoryListView extends StatelessWidget {
   final List<HistoryEntry> entries;
@@ -26,24 +25,13 @@ class HistoryListView extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
           child: InkWell(
             onTap: () {
-              final comicId = entry.id;
-              final found = findComicById(comicId, context);
-              if (found != null) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ComicDetailScreen(comic: found),
-                  ),
-                );
-                return;
-              }
-
-              final minimal = Comic(
-                id: comicId,
+              final entry = entries[index];
+              final manga = Manga(
+                id: entry.id,
                 title: entry.title,
-                author: entry.author ?? 'Unknown',
-                description: entry.description ?? 'No description available.',
-                coverImage: entry.coverImage ?? '',
+                author: entry.author,
+                synopsis: entry.description,
+                imageUrl: entry.coverImage ?? '',
                 rating: 0.0,
                 genres: <String>[],
               );
@@ -51,7 +39,7 @@ class HistoryListView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ComicDetailScreen(comic: minimal),
+                  builder: (context) => ComicDetailScreen(comic: manga),
                 ),
               );
             },

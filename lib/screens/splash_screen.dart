@@ -1,9 +1,7 @@
-
-import 'package:belajar_flutter/screens/getstarted_screen.dart';
+// import 'package:belajar_flutter/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-
+import 'package:go_router/go_router.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -19,12 +17,16 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacement<void, void>(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => const GetStartedPage(),
-        ),
-      );
+      if (mounted) {
+        context.go('/getstarted');
+      }
+      
+      // Navigator.pushReplacement<void, void>(
+      //   context,
+      //   MaterialPageRoute<void>(
+      //     builder: (BuildContext context) => const MyHomePage(userName: '',),
+      //   ),
+      // );
     });
   }
 
