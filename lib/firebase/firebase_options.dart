@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBF9Vv1r4HROr-HrFEpDRFAKN9r-mp1i1Q',
-    appId: '1:532145120675:web:6ef8deaf9c7c2be26ea616',
-    messagingSenderId: '532145120675',
-    projectId: 'mango-746b4',
-    authDomain: 'mango-746b4.firebaseapp.com',
-    storageBucket: 'mango-746b4.firebasestorage.app',
-    measurementId: 'G-3EP296GJE4',
+    apiKey: 'AIzaSyCFpCgVpemaeM0FjEdWcoyUe6Hp-HwpRLk',
+    appId: '1:299021522563:web:093a462f31060cc415edb6',
+    messagingSenderId: '299021522563',
+    projectId: 'mango-test-db0fb',
+    authDomain: 'mango-test-db0fb.firebaseapp.com',
+    storageBucket: 'mango-test-db0fb.firebasestorage.app',
+    measurementId: 'G-2STYDLJH66',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDX8DEa6fv3FgKCj5OzHQA6xSpq8blim_w',
-    appId: '1:532145120675:android:6aadcb6fb53a5de56ea616',
-    messagingSenderId: '532145120675',
-    projectId: 'mango-746b4',
-    storageBucket: 'mango-746b4.firebasestorage.app',
+    apiKey: 'AIzaSyC9Qud36rkc-oJzHb1QUPcKY6Kh7rQEDTs',
+    appId: '1:299021522563:android:40f474c585ecc3bf15edb6',
+    messagingSenderId: '299021522563',
+    projectId: 'mango-test-db0fb',
+    storageBucket: 'mango-test-db0fb.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD9SRnmbya22yX7qSPaP1oRiqcEu1GoYeU',
-    appId: '1:532145120675:ios:c5ca9af5ac9fc2c66ea616',
-    messagingSenderId: '532145120675',
-    projectId: 'mango-746b4',
-    storageBucket: 'mango-746b4.firebasestorage.app',
+    apiKey: 'AIzaSyDqcNJY2oPulysykjZWToJx8kkevmWc1O8',
+    appId: '1:299021522563:ios:2a42094746a752d215edb6',
+    messagingSenderId: '299021522563',
+    projectId: 'mango-test-db0fb',
+    storageBucket: 'mango-test-db0fb.firebasestorage.app',
     iosBundleId: 'com.example.belajarFlutter',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD9SRnmbya22yX7qSPaP1oRiqcEu1GoYeU',
-    appId: '1:532145120675:ios:c5ca9af5ac9fc2c66ea616',
-    messagingSenderId: '532145120675',
-    projectId: 'mango-746b4',
-    storageBucket: 'mango-746b4.firebasestorage.app',
+    apiKey: 'AIzaSyDqcNJY2oPulysykjZWToJx8kkevmWc1O8',
+    appId: '1:299021522563:ios:2a42094746a752d215edb6',
+    messagingSenderId: '299021522563',
+    projectId: 'mango-test-db0fb',
+    storageBucket: 'mango-test-db0fb.firebasestorage.app',
     iosBundleId: 'com.example.belajarFlutter',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBF9Vv1r4HROr-HrFEpDRFAKN9r-mp1i1Q',
-    appId: '1:532145120675:web:6e6f2ed44ccdd1866ea616',
-    messagingSenderId: '532145120675',
-    projectId: 'mango-746b4',
-    authDomain: 'mango-746b4.firebaseapp.com',
-    storageBucket: 'mango-746b4.firebasestorage.app',
-    measurementId: 'G-58SRVV5330',
+    apiKey: 'AIzaSyCFpCgVpemaeM0FjEdWcoyUe6Hp-HwpRLk',
+    appId: '1:299021522563:web:a37031941c17145c15edb6',
+    messagingSenderId: '299021522563',
+    projectId: 'mango-test-db0fb',
+    authDomain: 'mango-test-db0fb.firebaseapp.com',
+    storageBucket: 'mango-test-db0fb.firebasestorage.app',
+    measurementId: 'G-4QNKNJ0SBE',
   );
+
 }

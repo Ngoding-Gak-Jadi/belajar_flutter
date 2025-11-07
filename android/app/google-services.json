@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "532145120675",
-    "project_id": "mango-746b4",
-    "storage_bucket": "mango-746b4.firebasestorage.app"
+    "project_number": "299021522563",
+    "project_id": "mango-test-db0fb",
+    "storage_bucket": "mango-test-db0fb.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:532145120675:android:6aadcb6fb53a5de56ea616",
+        "mobilesdk_app_id": "1:299021522563:android:40f474c585ecc3bf15edb6",
         "android_client_info": {
           "package_name": "com.example.belajar_flutter"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDX8DEa6fv3FgKCj5OzHQA6xSpq8blim_w"
+          "current_key": "AIzaSyC9Qud36rkc-oJzHb1QUPcKY6Kh7rQEDTs"
         }
       ],
       "services": {

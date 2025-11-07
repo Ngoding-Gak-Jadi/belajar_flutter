@@ -30,7 +30,7 @@ class FavoritesScreen extends StatelessWidget {
                 );
               }
 
-              return ComicListView(comics: [],);
+              return ComicListView(comics: favoritesProvider.favorites);
             },
           ),
         ),

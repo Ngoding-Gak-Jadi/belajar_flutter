@@ -10,6 +10,8 @@ import 'package:belajar_flutter/screens/profile/about/about_screen.dart';
 import 'package:belajar_flutter/screens/favorites/favorites_screen.dart';
 import 'package:belajar_flutter/screens/history/history_screen.dart';
 import 'package:belajar_flutter/screens/splash_screen.dart';
+import 'package:belajar_flutter/router/comic/comic_detail_route.dart';
+import 'package:belajar_flutter/router/comic/chapter_route.dart';
 import 'package:belajar_flutter/widgets/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -45,6 +47,27 @@ final goRouter = GoRouter(
       path: '/',
       name: 'splashScreen',
       builder: (context, state) => const SplashScreen(),
+    ),
+
+    // Comic detail by id
+    GoRoute(
+      path: '/comic/:comicId',
+      name: 'comicDetail',
+      builder: (context, state) {
+        final comicId = state.pathParameters['comicId'] ?? '';
+        return ComicDetailRoute(comicId: comicId);
+      },
+    ),
+
+    // Chapter route: comic id + chapter id
+    GoRoute(
+      path: '/comic/:comicId/chapter/:chapterId',
+      name: 'chapterDetail',
+      builder: (context, state) {
+        final comicId = state.pathParameters['comicId'] ?? '';
+        final chapterId = state.pathParameters['chapterId'] ?? '';
+        return ChapterRoute(comicId: comicId, chapterId: chapterId);
+      },
     ),
 
     // Shell route for main navigation

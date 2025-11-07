@@ -1,5 +1,5 @@
-import 'package:belajar_flutter/screens/chapter_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/history_provider.dart';
 import '../models/comic/comic.dart';
@@ -35,7 +35,10 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
         history.addEntry(
           comicId: widget.comic.id.toString(),
           title: widget.comic.titleEnglish ?? widget.comic.title,
+          imageUrl: widget.comic.imageUrl,
           genres: widget.comic.genres,
+          author: widget.comic.author,
+          synopsis: widget.comic.synopsis,
         );
       } catch (_) {
         // provider not registered or other error - ignore silently
@@ -50,7 +53,7 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
     });
 
     try {
-      // fetch chapters from API using manga id
+      // fetch chapters from API using comic id
       final fetched = await _apiService.getChapters(widget.comic.id);
       chapters = fetched;
     } catch (e) {
@@ -134,20 +137,6 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
                                 ),
                               ),
                             ),
-                          // if (widget.comic.rating > 0)
-                          //   Row(
-                          //     children: [
-                          //       const Icon(Icons.star, color: Colors.amber),
-                          //       const SizedBox(width: 4),
-                          //       Text(
-                          //         widget.comic.rating.toStringAsFixed(1),
-                          //         style: const TextStyle(
-                          //           fontSize: 18,
-                          //           fontWeight: FontWeight.bold,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -188,9 +177,7 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
                       ...widget.comic
                           .getAdditionalInfo()
                           .entries
-                          .where(
-                            (e) => e.value != null,
-                          ) // Filter out null values
+                          .where((e) => e.value != null)
                           .map(
                             (e) => Padding(
                               padding: const EdgeInsets.only(bottom: 4),
@@ -234,9 +221,7 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
                           children: [
                             const Text(
                               'Total Chapters: ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text('${widget.comic.chapters}'),
                           ],
@@ -310,15 +295,8 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
                               child: ElevatedButton.icon(
                                 onPressed: () {
                                   if (chapters.isNotEmpty) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            ChapterDetailScreen(
-                                              chapter: chapters[0],
-                                              allChapters: chapters,
-                                            ),
-                                      ),
+                                    context.go(
+                                      '/comic/${Uri.encodeComponent(widget.comic.id)}/chapter/${Uri.encodeComponent(chapters[0].id)}',
                                     );
                                   }
                                 },
@@ -370,21 +348,10 @@ class _ComicDetailScreenState extends State<ComicDetailScreen> {
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               child: ListTile(
                                 title: Text(chapter.title),
-                                // subtitle: Text(
-                                //   chapter.publishedAt != null
-                                //       ? 'Chapter ${chapter.chapterNumber} • ${_formatDate(chapter.publishedAt!)}'
-                                //       : 'Chapter ${chapter.chapterNumber}',
-                                // ),
                                 trailing: const Icon(Icons.chevron_right),
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ChapterDetailScreen(
-                                        chapter: chapter,
-                                        allChapters: chapters,
-                                      ),
-                                    ),
+                                  context.go(
+                                    '/comic/${Uri.encodeComponent(widget.comic.id)}/chapter/${Uri.encodeComponent(chapter.id)}',
                                   );
                                 },
                               ),
